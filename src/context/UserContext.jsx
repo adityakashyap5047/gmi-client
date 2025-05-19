@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
 
   const logout = () => {
     socket.emit("user-logout", { userId: user._id });
+    socket.disconnect();
     sessionStorage.removeItem("user");
     setUser(null);
   };

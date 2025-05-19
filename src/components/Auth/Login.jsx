@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import io from "socket.io-client";
+
+const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
 export default function Login() {
 
   const navigate = useNavigate();
 
-  const {setUser} = useUser();
+  const {setUser, user} = useUser();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -48,6 +51,11 @@ export default function Login() {
         const res = await axios.post(import.meta.env.VITE_PUBLIC_API_URL + "/api/auth/login", form);
         if (res.status === 200) {
           setUser(res.data?.user);
+          if(user) {
+            if(!socket.connected) {
+              socket.connect();
+            }
+          }
           setSuccessMsg("Login successful!");
           navigate("/")
         } else {

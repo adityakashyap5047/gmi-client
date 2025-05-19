@@ -12,7 +12,7 @@ export default function Navbar() {
       ? [
           {
             name: "Logout",
-            onClick: () => {
+            handleClick: () => {
               logout();           
             },
           },
@@ -43,9 +43,9 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <ul className="hidden md:flex space-x-8 text-white font-semibold">
-          {navLinks.map(({ name, href, onClick }) => (
+          {navLinks.map(({ name, href, handleClick }) => (
             <motion.li
-              onClick={onClick}
+              onClick={handleClick}
               key={name}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -63,7 +63,7 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <svg
-            className="w-7 h-7"
+            className="w-7 h-7 cursor-pointer"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -88,15 +88,18 @@ export default function Navbar() {
           animate={{ opacity: 1, height: "auto" }}
           transition={{ duration: 0.3 }}
         >
-          {navLinks.map(({ name, href }) => (
+          {navLinks.map(({ name, href, handleClick }) => (
             <motion.li
               key={name}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 0.95 }}
               whileTap={{ scale: 0.95 }}
-              className="cursor-pointer hover:text-indigo-400 transition"
-              onClick={() => setIsOpen(false)}
+              className="cursor-pointer hover:text-indigo-900 transition"
+              onClick={() => {
+                setIsOpen(false);
+                handleClick();
+              }}
             >
-              <a href={href}>{name}</a>
+              <a href={href} >{name}</a>
             </motion.li>
           ))}
         </motion.ul>
