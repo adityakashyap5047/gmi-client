@@ -1,5 +1,8 @@
 import {motion} from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import {io} from "socket.io-client"
+
+const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
 function Map() {
 
@@ -7,6 +10,17 @@ function Map() {
     const [success, setSuccess] = useState(false)
     const [securityKey, setSecurityKey] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [userLocations, setUserLocations] = useState([]);
+
+    useEffect(() => {
+        socket.on("location-data", (locations) => {
+          setUserLocations(locations);
+        });
+    
+        return () => {
+          socket.off("location-data");
+        };
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();  
@@ -63,7 +77,12 @@ function Map() {
                 </form>
                 <p className='mt-8 text-cyan-900 font-semibold'>Don't have Security Key? Contact to Admin</p>
             </div>
-            :  <>Hello</>}
+            :  
+                <div>
+                    {userLocations.map((u) => console.log(u.email))}
+                </div>
+            
+        }
     </motion.div>
   )
 }

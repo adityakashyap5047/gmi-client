@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../../context/UserContext";
 import { motion } from "framer-motion";
-import MultipleMarkers from "./MultipleMarkers";
 
 const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
@@ -86,7 +85,6 @@ export default function LiveTracking() {
         )
         }
       </div>
-      {/* <MultipleMarkers locations={userLocations.map(u => u.location)} /> */}
     </div>
   );
 }
