@@ -8,6 +8,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
+    { name: "Map", href: "/map" },
     ...(user
       ? [
           {

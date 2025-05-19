@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaUsers, FaShieldAlt } from "react-icons/fa";
-import { useUser } from "../context/UserContext";
-import LiveTracking from "./LiveTracking";
+import { useUser } from "../../context/UserContext";
+import LiveTracking from "../LiveTracking";
 
 const features = [
   {

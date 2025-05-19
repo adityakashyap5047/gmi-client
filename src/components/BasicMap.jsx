@@ -5,7 +5,7 @@ const containerStyle = {
   height: '80vh'
 };
 
-const Map = ({ lat, lng }) => {
+const BasicMap = ({ lat, lng }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_PUBLIC_GOOGLE_MAP_API_KEY
   });
@@ -28,4 +28,4 @@ const Map = ({ lat, lng }) => {
   );
 };
 
-export default Map;
+export default BasicMap;

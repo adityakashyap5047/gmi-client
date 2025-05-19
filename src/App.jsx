@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from './components/Map';
+import BasicMap from './components/BasicMap';
 import CurrentMarker from './components/CurrentMarker';
 import MultipleMarkers from './components/MultipleMarkers';
 import MovingMarker from './components/MovingMarker';
@@ -7,11 +7,12 @@ import SmoothMovingMarker from './components/SmoothMovingMarker';
 import StickyMapMovingMarker from './components/StickyMapMovingMarker';
 import NearbyMovingMarker from './components/NearByMovingMarker';
 import MovingCurrentMarker from './components/MovingCurrentMarker';
-import Home from './components/Home';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './components/app/Home';
+import Map from './components/app/Map';
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
 
   return (
     // <div>
-    //   {/* <Map lat={28.6139} lng={77.2090} /> */}
+    //   {/* <BasicMap lat={28.6139} lng={77.2090} /> */}
     //   {/* <CurrentMarker/> */}
     //   {/* <MultipleMarkers locations={locations} /> */}
     //   {/* <MovingMarker/> */}
@@ -36,9 +37,10 @@ function App() {
     // </div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />            {/* Home page */}
-          <Route path="/login" element={<Login />} />      {/* Login page */}
-          <Route path="/register" element={<Register />} />{/* Register page */}
+          <Route path="/" element={<Home />} />        
+          <Route path="/map" element={<Map/>}/>   
+          <Route path="/login" element={<Login />} />   
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
   );
