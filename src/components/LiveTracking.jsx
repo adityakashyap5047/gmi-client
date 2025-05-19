@@ -56,7 +56,7 @@ export default function LiveTracking() {
   }, []);
 
   return (
-    <div className="p-6">
+    <div className="p-6 mb-12 bg-white/10 backdrop-blur-md rounded-xl shadow-lg border border-white/20">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Live User Coordinates</h2>
         <button

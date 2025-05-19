@@ -57,12 +57,12 @@ const Home = () => {
       </motion.header>
 
       <LiveTracking/>
-      
+
       <motion.section
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.2 }}
-        className="relative z-10  bg-white/10 backdrop-blur-md p-12 rounded-3xl max-w-3xl text-center shadow-lg border border-white/20 mb-20"
+        className="relative z-10  bg-white/10 backdrop-blur-md p-12 rounded-xl max-w-3xl text-center shadow-lg border border-white/20 mb-20"
       >
         <p className="text-gray-300 text-lg mb-6">
           Get started now to see the power of live tracking in action.
@@ -70,7 +70,7 @@ const Home = () => {
 
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link to="/map">
-          <button className="bg-white text-black px-8 py-3 rounded-full font-semibold shadow-md hover:bg-gray-200 transition duration-300">
+          <button className="bg-white text-black px-8 py-3 rounded-md font-semibold shadow-md hover:bg-gray-200 transition duration-300">
             View Live Map
           </button>
           </Link>
