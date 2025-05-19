@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import { useUser } from "../context/UserContext";
+import { motion } from "framer-motion";
+import MultipleMarkers from "./MultipleMarkers";
 
 const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
@@ -66,26 +68,25 @@ export default function LiveTracking() {
           {visible ? "Visible" : "Hidden"}
         </button>
       </div>
-
-      {userLocations.length === 0 ? (
-        <p>No active users...</p>
-      ) : (
-        <ul className="space-y-3">
-          {userLocations.map((u) => (
-            <li key={u._id} className="bg-white text-black shadow rounded p-4">
-              <p>
-                <strong>Email:</strong> {u.email}
-              </p>
-              <p>
-                <strong>Latitude:</strong> {u.location.lat}
-              </p>
-              <p>
-                <strong>Longitude:</strong> {u.location.lng}
-              </p>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="flex gap-4 flex-wrap">
+        {userLocations.length > 0 && (
+          userLocations.map((u) => (
+            <motion.section
+              key={u._id}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1.2 }}
+              className="relative mt-8 z-10 w-xs bg-white/10 backdrop-blur-md p-8 rounded-xl text-center shadow-lg border border-white/20"
+            >
+              <p><strong>Email: </strong>{u.email.slice(0, 20)}...</p>
+              <p><strong>Latitude: </strong>{u.location.lat}</p>
+              <p><strong>Longitude: </strong>{u.location.lng}</p>
+            </motion.section>
+          ))
+        )
+        }
+      </div>
+      {/* <MultipleMarkers locations={userLocations.map(u => u.location)} /> */}
     </div>
   );
 }

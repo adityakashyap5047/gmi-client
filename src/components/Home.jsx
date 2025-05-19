@@ -32,7 +32,6 @@ const Home = () => {
   return (
     <div className="relative w-full bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] overflow-hidden text-white px-6 py-16 md:py-24 flex flex-col items-center">
       {/* Glowing background */}
-      <LiveTracking/>
       <div className="absolute w-[30rem] h-[30rem] bg-purple-600 rounded-full opacity-30 blur-3xl top-10 left-[-10rem] animate-pulse" />
       <div className="absolute w-[40rem] h-[40rem] bg-pink-600 rounded-full opacity-20 blur-3xl bottom-[-10rem] right-[-10rem] animate-pulse" />
 
@@ -42,12 +41,12 @@ const Home = () => {
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="max-w-4xl my-12 text-center mb-14"
+        className="max-w-4xl mb-12 text-center"
       >
-        <h2 className="text-lg mb-8 text-purple-400 font-semibold uppercase tracking-widest">
+        <h2 className="text-xl my-12 text-purple-400 font-semibold uppercase tracking-widest">
           Welcome to Trackr
         </h2>
-        <h1 className="text-5xl mt-16 mb-8 font-extrabold leading-tight max-w-3xl mx-auto">
+        <h1 className="text-5xl mb-8 font-extrabold leading-tight max-w-3xl mx-auto">
           Real-Time Location Tracking for Everyone
         </h1>
         <p className="mt-12 text-gray-300 text-lg max-w-xl mx-auto">
@@ -56,12 +55,14 @@ const Home = () => {
         </p>
         <p>Hello, {user?.email}</p>
       </motion.header>
-     
+
+      <LiveTracking/>
+      
       <motion.section
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.2 }}
-        className="relative z-10 mt-12 bg-white/10 backdrop-blur-md p-12 rounded-3xl max-w-3xl text-center shadow-lg border border-white/20 mb-20"
+        className="relative z-10  bg-white/10 backdrop-blur-md p-12 rounded-3xl max-w-3xl text-center shadow-lg border border-white/20 mb-20"
       >
         <p className="text-gray-300 text-lg mb-6">
           Get started now to see the power of live tracking in action.
