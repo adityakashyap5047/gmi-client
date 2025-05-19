@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     host: true,
-    allowedHosts: ['cc95-2409-40e5-b8-d8a8-418b-c06e-811a-e4e0.ngrok-free.app'],
+    allowedHosts: ['gmi-client.onrender.com'],
   },
 });
