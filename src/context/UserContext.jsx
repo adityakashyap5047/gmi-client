@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import io from "socket.io-client";
 
 const UserContext = createContext();
+const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -16,6 +18,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const logout = () => {
+    socket.emit("user-logout", { userId: user._id });
     sessionStorage.removeItem("user");
     setUser(null);
   };
