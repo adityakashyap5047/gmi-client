@@ -83,7 +83,7 @@ function Map() {
 
   return (
     <motion.div
-        className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 via-gray-500 to-sky-500 p-6"
+        className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#0d47ce] via-[#034470] to-[#2dc1d1] p-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -102,6 +102,7 @@ function Map() {
                         onChange={(e) => setSecurityKey(e.target.value)}
                         className={`w-full px-4 py-2 rounded-md bg-white/70 focus:outline-none `}
                         placeholder="abcd1234"
+                        type="password"
                     />
                     {error && (
                         <p className="text-red-500 text-sm mt-1">{error}</p>
@@ -118,7 +119,7 @@ function Map() {
             </div>
             :  
             <>
-                {userLocations.length > 0 ? userLocations.map((u) => <p key={u.email}><strong>Email: </strong>{u.email.slice(0, 20)}{u.email.length > 20 && "..."}</p>) : <p>Loading...</p>}
+                {userLocations.length > 0 ? <MapTracking locations={userLocations.map((u) => u.location)}/> : <p>Loading...</p>}
             </>
 
         }

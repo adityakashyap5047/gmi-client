@@ -29,7 +29,7 @@ const Home = () => {
   const {user} = useUser();
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] overflow-hidden text-white px-6 py-16 md:py-24 flex flex-col items-center">
+    <div className="relative w-full bg-gradient-to-br from-blue-500 via-gray-500 to-sky-500 overflow-hidden text-white px-6 py-16 md:py-24 flex flex-col items-center">
       {/* Glowing background */}
       <div className="absolute w-[30rem] h-[30rem] bg-purple-600 rounded-full opacity-30 blur-3xl top-10 left-[-10rem] animate-pulse" />
       <div className="absolute w-[40rem] h-[40rem] bg-pink-600 rounded-full opacity-20 blur-3xl bottom-[-10rem] right-[-10rem] animate-pulse" />

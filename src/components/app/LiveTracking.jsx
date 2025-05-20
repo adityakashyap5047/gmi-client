@@ -84,39 +84,24 @@ export default function LiveTracking() {
         </motion.div>
       </div>
       <div className="flex p-4 gap-4 flex-wrap">
-        {userLocations.length > 0 && (
-          userLocations.map((u) => (
-            <motion.section
-              key={u._id}
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.2 }}
-              className="relative mt-8 z-10 w-xs bg-white/10 backdrop-blur-md p-8 rounded-xl text-center shadow-lg border border-white/20"
-            >
-              <p><strong>Email: </strong>{u.email.slice(0, 20)}{u.email.length > 20 && "..."}</p>
-              <p><strong>Latitude: </strong>{u.location.lat}</p>
-              <p><strong>Longitude: </strong>{u.location.lng}</p>
-            </motion.section>
-          ))
-        )}
         <motion.section
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.2 }}
         className="relative z-10 flex gap-4 bg-white/10 backdrop-blur-md p-4 rounded-xl max-w-3xl text-center shadow-lg border border-white/20 "
       >
-        {userLocation.map((u) => (
+        {userLocations.length > 0 && userLocations.map((u) => (
           <motion.section
           key={u.email}
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.2 }}
-        className="relative z-10  bg-white/10 backdrop-blur-md p-12 rounded-md max-w-3xl text-center shadow-lg border border-white/20 mb-4"
-      >
-        <p><strong>Email: </strong>{u.email.slice(0, 20)}{u.email.length > 20 && "..."}</p>
-        <p><strong>Latitude: </strong>{u.lat}</p>
-        <p><strong>Longitude: </strong>{u.lng}</p>
-      </motion.section>
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            className="relative z-10  bg-white/10 backdrop-blur-md p-12 rounded-md max-w-3xl text-center shadow-lg border border-white/20 mb-4"
+          >
+            <p><strong>Email: </strong>{u.email.slice(0, 20)}{u.email.length > 20 && "..."}</p>
+            <p><strong>Latitude: </strong>{u.location.lat}</p>
+            <p><strong>Longitude: </strong>{u.location.lng}</p>
+          </motion.section>
         ))}
       </motion.section>
       </div>
