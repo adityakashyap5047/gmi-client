@@ -1,26 +1,64 @@
 import {motion} from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {io} from "socket.io-client"
 import MapTracking from './mapTracking';
+import { useUser } from '../../context/UserContext';
 
 const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
 function Map() {
 
+    const { user } = useUser();
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
     const [securityKey, setSecurityKey] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [userLocations, setUserLocations] = useState([]);
+    const [visible, setVisible] = useState(true);
 
-    useEffect(() => {
-        socket.on("location-data", (locations) => {
-          setUserLocations(locations);
-        });
+    const watchIdRef = useRef(null);
     
-        return () => {
-          socket.off("location-data");
-        };
+    const toggleVisibility = () => {
+    setVisible((prev) => !prev);
+    socket.emit("visibility-toggle", { userId: user._id, visible: !visible });
+    };
+
+    // Start/Stop location tracking based on visibility
+    useEffect(() => {
+    if (!user || !user._id) return;
+
+    if (visible) {
+        watchIdRef.current = navigator.geolocation.watchPosition(
+        (position) => {
+            const { latitude, longitude } = position.coords;
+            socket.emit("location-update", {
+            userId: user._id,
+            lat: latitude,
+            lng: longitude,
+            });
+        },
+        (err) => console.error("Geolocation error:", err),
+        { enableHighAccuracy: true }
+        );
+    } else {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+        socket.emit("remove-user", { userId: user._id });
+    }
+
+    return () => {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+    };
+    }, [visible, user]);
+    
+    // Receive updated user locations
+    useEffect(() => {
+    socket.on("location-data", (locations) => {
+        setUserLocations(locations);
+    });
+
+    return () => {
+        socket.off("location-data");
+    };
     }, []);
 
     const handleSubmit = async (e) => {
@@ -80,7 +118,7 @@ function Map() {
             </div>
             :  
             <>
-                {userLocations.length > 0 ? <MapTracking locations={userLocations.map(u => u.location)} /> : <p>Loading...</p>}
+                {userLocations.length > 0 ? userLocations.map((u) => <p key={u.email}><strong>Email: </strong>{u.email.slice(0, 20)}{u.email.length > 20 && "..."}</p>) : <p>Loading...</p>}
             </>
 
         }

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import { useUser } from "../../context/UserContext";
 import { motion } from "framer-motion";
-import MapTracking from "./mapTracking";
 
 const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
@@ -58,7 +57,7 @@ export default function LiveTracking() {
   return (
     <div className="p-6 mb-12 bg-white/10 backdrop-blur-md rounded-xl shadow-lg border border-white/20">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Live User Coordinates</h2>
+        <h2 className="text-xl font-bold mr-4">Live User Coordinates</h2>
         <button
           className={`px-4 py-2 rounded text-white ${
             visible ? "bg-green-600" : "bg-gray-400"
@@ -78,7 +77,7 @@ export default function LiveTracking() {
               transition={{ duration: 1.2 }}
               className="relative mt-8 z-10 w-xs bg-white/10 backdrop-blur-md p-8 rounded-xl text-center shadow-lg border border-white/20"
             >
-              <p><strong>Email: </strong>{u.email.slice(0, 20)}...</p>
+              <p><strong>Email: </strong>{u.email.slice(0, 20)}{u.email.length > 20 && "..."}</p>
               <p><strong>Latitude: </strong>{u.location.lat}</p>
               <p><strong>Longitude: </strong>{u.location.lng}</p>
             </motion.section>
