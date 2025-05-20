@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaUsers, FaShieldAlt } from "react-icons/fa";
 import { useUser } from "../../context/UserContext";
 import LiveTracking from "./LiveTracking";
+import GlowingBG from "./GlowingBG";
 
 const features = [
   {
@@ -31,9 +32,9 @@ const Home = () => {
   return (
     <div className="relative w-full bg-gradient-to-br from-blue-500 via-gray-500 to-sky-500 overflow-hidden text-white px-6 py-16 md:py-24 flex flex-col items-center">
       {/* Glowing background */}
-      <div className="absolute w-[30rem] h-[30rem] bg-purple-600 rounded-full opacity-30 blur-3xl top-10 left-[-10rem] animate-pulse" />
-      <div className="absolute w-[40rem] h-[40rem] bg-pink-600 rounded-full opacity-20 blur-3xl bottom-[-10rem] right-[-10rem] animate-pulse" />
-
+      <GlowingBG color="bg-purple-600" position="top-10 left-[-10rem]"/>
+      <GlowingBG color="bg-blue-600" position="top-20 left-20 md:left-[30rem]"/>
+      <GlowingBG color="bg-indigo-600" position="bottom-[-10rem] right-[-10rem]"/>
 
       {/* Top Header */}
       <motion.header
