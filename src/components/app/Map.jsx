@@ -1,6 +1,7 @@
 import {motion} from 'framer-motion'
 import { useEffect, useState } from 'react'
 import {io} from "socket.io-client"
+import MapTracking from './mapTracking';
 
 const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
@@ -78,10 +79,10 @@ function Map() {
                 <p className='mt-8 text-cyan-900 font-semibold'>Don't have Security Key? Contact to Admin</p>
             </div>
             :  
-                <div>
-                    {userLocations.map((u) => console.log(u.email))}
-                </div>
-            
+            <>
+                {userLocations.length > 0 ? <MapTracking locations={userLocations.map(u => u.location)} /> : <p>Loading...</p>}
+            </>
+
         }
     </motion.div>
   )
