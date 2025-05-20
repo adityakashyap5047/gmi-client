@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import { useUser } from "../../context/UserContext";
 import { motion } from "framer-motion";
+import MapTracking from "./mapTracking";
 
 const socket = io(import.meta.env.VITE_PUBLIC_API_URL);
 
