@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaUsers, FaShieldAlt } from "react-icons/fa";
@@ -70,7 +69,7 @@ const Home = () => {
 
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link to="/map">
-          <button className="bg-white text-black px-8 py-3 rounded-md font-semibold shadow-md hover:bg-gray-200 transition duration-300">
+          <button className="bg-white cursor-pointer text-black px-8 py-3 rounded-md font-semibold shadow-md hover:bg-gray-200 transition duration-300">
             View Live Map
           </button>
           </Link>

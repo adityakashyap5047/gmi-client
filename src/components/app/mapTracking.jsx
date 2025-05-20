@@ -1,4 +1,5 @@
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { useUser } from '../../context/UserContext';
 
 const containerStyle = {
   width: '100vw',
@@ -8,15 +9,18 @@ const containerStyle = {
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_PUBLIC_GOOGLE_MAP_API_KEY;
 
 const MapTracking = ({ locations }) => {
+  
+  const {user} = useUser(); 
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   });
 
   if (!isLoaded) return <div>Loading Map...</div>;
 
-  const defaultCenter = locations.length > 0
-    ? { lat: locations[0].lat, lng: locations[0].lng }
-    : { lat: 0, lng: 0 };
+  const defaultCenter = user?.location
+    ? { lat: user.location.lat, lng: user.location.lng }
+    : { lat: locations[0].lat, lng: locations[0].lng };
 
   return (
     <GoogleMap
