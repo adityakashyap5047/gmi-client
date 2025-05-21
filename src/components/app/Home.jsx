@@ -34,7 +34,7 @@ const Home = () => {
       {/* Glowing background */}
       <GlowingBG color="bg-purple-600" position="top-10 left-[-10rem]"/>
       <GlowingBG color="bg-blue-600" position="top-20 left-20 md:left-[30rem]"/>
-      <GlowingBG color="bg-indigo-600" position="bottom-[-10rem] right-[-10rem]"/>
+      <GlowingBG color="bg-pink-600" position="bottom-[-10rem] right-[-10rem]"/>
 
       {/* Top Header */}
       <motion.header
